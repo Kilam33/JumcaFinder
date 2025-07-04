@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { X, Mail, Lock, User } from 'lucide-react';
+import { X, Mail, Lock, LogIn } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../hooks/useAuth';
 
@@ -127,7 +127,7 @@ export function AuthModal({ onClose, onSuccess }: AuthModalProps) {
                 <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
               ) : (
                 <>
-                  <User className="h-4 w-4 mr-2" />
+                  <LogIn  className="h-4 w-4 mr-2" />
                   {isLogin ? 'Sign In' : 'Sign Up'}
                 </>
               )}
