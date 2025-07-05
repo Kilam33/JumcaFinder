@@ -49,38 +49,35 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-green-50/50">
-      {/* Header with glassmorphism effect */}
+      {/* Header */}
       <div className="bg-white/70 backdrop-blur-md border-b border-white/20 shadow-lg shadow-black/5">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-          <div className="flex flex-col sm:flex-row justify-between items-start gap-6 mb-8">
-            <div className="text-center sm:text-left flex-1">
+          {/* Admin */}
+          <div className="flex items-center gap-3 sm:gap-4 justify-end mb-8">
+            {isAuthenticated && (
+              <button
+                onClick={signOut}
+                className="text-sm text-gray-600 hover:text-gray-800 transition-colors px-3 py-2 rounded-lg hover:bg-gray-100/50"
+              >
+                Sign Out
+              </button>
+            )}
+            <button
+              onClick={handleAdminClick}
+              className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-4 sm:px-6 py-2.5 rounded-xl font-medium transition-all duration-200 text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-105"
+            >
+              {isAuthenticated ? 'Admin Panel' : 'Admin Login'}
+            </button>
+          </div>
+
+          <div className="flex flex-col items-center text-center gap-6 mb-8">
+            <div className="text-center flex-1">
               <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl mb-6 shadow-lg shadow-emerald-500/25">
                 <MapPin className="h-8 w-8 text-white" />
               </div>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
-                Mosque Finder
+              <h1 className="text-1xl sm:text-1xl lg:text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent mb-4">
+                Find Jimca Prayer Times
               </h1>
-              <p className="text-base sm:text-lg text-gray-600 max-w-2xl leading-relaxed">
-                Find local mosques by ZIP code or search for specific mosques to discover Jummuah prayer times
-              </p>
-            </div>
-            
-            {/* Admin Button */}
-            <div className="flex items-center gap-3 sm:gap-4 w-full sm:w-auto justify-center sm:justify-end">
-              {isAuthenticated && (
-                <button
-                  onClick={signOut}
-                  className="text-sm text-gray-600 hover:text-gray-800 transition-colors px-3 py-2 rounded-lg hover:bg-gray-100/50"
-                >
-                  Sign Out
-                </button>
-              )}
-              <button
-                onClick={handleAdminClick}
-                className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white px-4 sm:px-6 py-2.5 rounded-xl font-medium transition-all duration-200 text-sm shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-105"
-              >
-                {isAuthenticated ? 'Admin Panel' : 'Admin Login'}
-              </button>
             </div>
           </div>
           
@@ -93,7 +90,7 @@ function App() {
       {/* Main Content */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {error && (
-          <div className="mb-6">
+          <div className="mb-6 text-center">
             <ErrorMessage message={error} />
           </div>
         )}
@@ -113,9 +110,13 @@ function App() {
         )}
 
         {searchResult ? (
-          <SearchResults result={searchResult} />
+          <div className="text-center">
+            <SearchResults result={searchResult} />
+          </div>
         ) : !loading && !noResults && !error ? (
-          <EmptyState />
+          <div className="text-center">
+            <EmptyState />
+          </div>
         ) : null}
       </div>
 

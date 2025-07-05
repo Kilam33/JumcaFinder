@@ -15,7 +15,7 @@ export function SearchInput({ onSearch, loading }: SearchInputProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto">
+    <form onSubmit={handleSubmit} className="w-full max-w-2xl mx-auto text-center">
       <div className="relative">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           {loading ? (
@@ -29,15 +29,15 @@ export function SearchInput({ onSearch, loading }: SearchInputProps) {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Enter ZIP code or mosque name..."
-          className="w-full pl-12 pr-4 py-4 text-lg border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all duration-200 shadow-sm hover:shadow-md"
+          className="w-full pl-12 pr-20 sm:pr-24 py-4 text-lg border border-gray-300 rounded-xl focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition-all duration-200 shadow-sm hover:shadow-md text-left"
           disabled={loading}
         />
         <button
           type="submit"
           disabled={loading || !query.trim()}
-          className="absolute inset-y-0 right-0 pr-4 flex items-center"
+          className="absolute inset-y-0 right-0 pr-2 sm:pr-4 flex items-center"
         >
-          <div className="bg-green-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-6 py-2 rounded-lg font-medium transition-colors duration-200 disabled:cursor-not-allowed">
+          <div className="bg-emerald-600 hover:bg-green-700 disabled:bg-gray-400 text-white px-3 sm:px-6 py-2 rounded-lg font-medium transition-colors duration-200 disabled:cursor-not-allowed text-sm sm:text-base">
             Search
           </div>
         </button>
